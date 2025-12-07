@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Copy, Check, Share2 } from 'lucide-react';
+import { X, Copy, Check } from 'lucide-react';
 import { PromptItem, Language } from '../types';
 
 interface DetailModalProps {
@@ -96,4 +96,26 @@ const DetailModal: React.FC<DetailModalProps> = ({ item, isOpen, onClose, lang, 
                 <label className="block text-xs font-semibold text-pantone-500 uppercase tracking-wider mb-3">
                     {lang === 'en' ? 'Prompt' : '提示词'}
                 </label>
-                <div className="bg-white/60 p-5 rounded-2xl border border-white shadow-sm text-pantone-800 font-mono text-sm leading-relaxed whitespace-pre
+                <div className="bg-white/60 p-5 rounded-2xl border border-white shadow-sm text-pantone-800 font-mono text-sm leading-relaxed whitespace-pre-wrap mb-6">
+                    {item.prompt}
+                </div>
+            </div>
+
+            {/* Actions */}
+            <div className="mt-auto pt-4 border-t border-pantone-300/50 flex gap-3">
+                <button 
+                    onClick={handleCopy}
+                    className="flex-1 flex items-center justify-center gap-2 bg-pantone-900 text-white py-3.5 rounded-xl font-medium hover:bg-black transition-all shadow-lg hover:shadow-xl active:scale-95"
+                >
+                    {isCopied ? <Check size={18} /> : <Copy size={18} />}
+                    {isCopied ? (lang === 'en' ? 'Copied' : '已复制') : (lang === 'en' ? 'Copy Prompt' : '复制提示词')}
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DetailModal;
